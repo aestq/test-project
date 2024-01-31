@@ -1,9 +1,10 @@
 import { clsx } from 'clsx'
-import { type FormEvent, memo, useState } from 'react'
+import { type FormEvent, memo } from 'react'
 import { getLoginRoute } from '@/shared/consts'
 import { getMessageError } from '@/shared/lib'
 import { Button, Input, AppLink, Alert } from '@/shared/ui'
 import { useRegister } from '../api/useRegister'
+import { useRegisterStore } from '../model/store'
 
 interface RegisterFormProps {
   className?: string
@@ -11,18 +12,15 @@ interface RegisterFormProps {
 
 export const RegisterForm = memo((props: RegisterFormProps) => {
   const { className } = props
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const username = useRegisterStore(state => state.username)
+  const password = useRegisterStore(state => state.password)
+  const setUsername = useRegisterStore(state => state.setUsername)
+  const setPassword = useRegisterStore(state => state.setPassword)
   const { mutate, isLoading, isError, error, isSuccess } = useRegister()
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
     mutate({ username, password })
-
-    if(isSuccess) {
-      setUsername('')
-      setPassword('')
-    }
   }
 
   return (

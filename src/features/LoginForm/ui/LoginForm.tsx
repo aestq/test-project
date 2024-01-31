@@ -1,9 +1,10 @@
 import { clsx } from 'clsx'
-import { type FormEvent, memo, useState } from 'react'
+import { type FormEvent, memo } from 'react'
 import { getRegisterRoute } from '@/shared/consts'
 import { getMessageError } from '@/shared/lib'
 import { Button, Input, AppLink } from '@/shared/ui'
 import { useLogin } from '../api/useLogin'
+import { useLoginStore } from '../model/store'
 
 interface LoginFormProps {
   className?: string
@@ -11,8 +12,10 @@ interface LoginFormProps {
 
 export const LoginForm = memo((props: LoginFormProps) => {
   const { className } = props
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const username = useLoginStore(state => state.username)
+  const password = useLoginStore(state => state.password)
+  const setUsername = useLoginStore(state => state.setUsername)
+  const setPassword = useLoginStore(state => state.setPassword)
   const { mutate, isLoading, isError, error } = useLogin()
 
   const onSubmit = (event: FormEvent) => {
