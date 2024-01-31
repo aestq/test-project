@@ -1,9 +1,5 @@
-import { clsx } from 'clsx'
+import { AppRouter } from '@/app/providers/Routing'
 
 export const App = () => {
-  return (
-    <div className={clsx('')}>
-      Hello
-    </div>
-  )
+  return <AppRouter />
 }
