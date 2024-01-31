@@ -1,9 +1,10 @@
 import { memo } from 'react'
+import { RegisterForm } from '@/features/RegisterForm'
 
 export const RegisterPage = memo(() => {
   return (
-    <div>
-      RegisterPage
+    <div className='flex justify-center items-center h-screen'>
+      <RegisterForm />
     </div>
   )
 })
