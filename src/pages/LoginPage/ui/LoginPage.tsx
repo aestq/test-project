@@ -1,9 +1,10 @@
 import { memo } from 'react'
+import { LoginForm } from '@/features/LoginForm'
 
 export const LoginPage = memo(() => {
   return (
-    <div>
-      LoginPage
+    <div className='flex justify-center items-center h-screen'>
+      <LoginForm />
     </div>
   )
 })
