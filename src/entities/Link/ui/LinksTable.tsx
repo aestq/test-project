@@ -50,7 +50,7 @@ export const LinksTable = memo((props: LinksTableProps) => {
 
   return (
     <Table
-      className={clsx('w-full mt-10', className)}
+      className={clsx('w-full mt-5', className)}
     >
       <thead>
       <Table.Tr>

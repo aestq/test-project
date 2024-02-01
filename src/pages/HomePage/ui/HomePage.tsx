@@ -1,11 +1,10 @@
 import { memo } from 'react'
-import { LinksTable, useLinks } from '@/entities/Link'
 import { useUserStore } from '@/entities/User'
 import { Button } from '@/shared/ui'
+import { HomePageTable } from './HomePageTable'
 
 export const HomePage = memo(() => {
   const logout = useUserStore(state => state.logout)
-  const { data, isLoading, isError } = useLinks()
 
   return (
     <div className='w-[80%] mx-auto'>
@@ -17,11 +16,7 @@ export const HomePage = memo(() => {
           Выйти
         </Button>
       </header>
-      <LinksTable
-        links={data}
-        isLoading={isLoading}
-        isError={isError}
-      />
+      <HomePageTable />
     </div>
   )
 })
