@@ -1,9 +1,11 @@
 import { memo } from 'react'
 import { AddShortLinkModal } from '@/features/AddShortLink'
 import { LinksOrderSort, useLinksOrderSortStore } from '@/features/LinksOrderSort'
-import { LinksTable, useLinks } from '@/entities/Link'
+import { LinksTable } from '@/entities/Link'
 import { useOpen } from '@/shared/lib'
 import { Button } from '@/shared/ui'
+import { useLinks } from '../api/useLinks'
+import { HomePagePagination } from './HomePagePagination'
 
 interface HomePageTableProps {
   className?: string
@@ -31,6 +33,7 @@ export const HomePageTable = memo((props: HomePageTableProps) => {
         isLoading={isLoading}
         isError={isError}
       />
+      <HomePagePagination />
     </main>
   )
 })
