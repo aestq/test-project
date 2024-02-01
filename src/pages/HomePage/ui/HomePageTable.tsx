@@ -1,6 +1,8 @@
 import { memo } from 'react'
+import { AddShortLinkModal } from '@/features/AddShortLink'
 import { LinksOrderSort, useLinksOrderSortStore } from '@/features/LinksOrderSort'
 import { LinksTable, useLinks } from '@/entities/Link'
+import { useOpen } from '@/shared/lib'
 import { Button } from '@/shared/ui'
 
 interface HomePageTableProps {
@@ -13,14 +15,16 @@ export const HomePageTable = memo((props: HomePageTableProps) => {
   const short = useLinksOrderSortStore(state => state.short)
   const counter = useLinksOrderSortStore(state => state.counter)
   const { data, isLoading, isError } = useLinks([target, short, counter])
+  const { isOpen, onOpen, onClose } = useOpen()
 
   return (
     <main className={className}>
       <div className='flex justify-between items-center'>
         <LinksOrderSort />
-        <Button>
+        <Button onClick={onOpen}>
           Создать ссылку
         </Button>
+        <AddShortLinkModal isOpen={isOpen} onClose={onClose} />
       </div>
       <LinksTable
         links={data}
