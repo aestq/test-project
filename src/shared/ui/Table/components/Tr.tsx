@@ -9,7 +9,7 @@ export const Tr = memo((props: TrProps) => {
 
   return (
     <tr
-      className={clsx('bg-neutral-800 border-b border-neutral-700 hover:bg-neutral-700 text-center', className)}
+      className={clsx('bg-neutral-800 border-b border-neutral-700', className)}
     >
       {children}
     </tr>
