@@ -16,5 +16,6 @@
 
 ### Второй способ запуска
 ```Bash
+    docker-compose build
     docker-compose up
 ```
