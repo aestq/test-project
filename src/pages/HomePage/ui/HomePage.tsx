@@ -2,7 +2,6 @@ import { memo } from 'react'
 import { store } from '@/entities/User'
 import { Button } from '@/shared/ui'
 import { HomePageFilters } from './HomePageFilters'
-import { HomePagePagination } from './HomePagePagination'
 import { HomePageTable } from './HomePageTable'
 
 export const HomePage = memo(() => {
@@ -20,7 +19,6 @@ export const HomePage = memo(() => {
       </header>
       <HomePageFilters />
       <HomePageTable />
-      <HomePagePagination />
     </div>
   )
 })

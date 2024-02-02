@@ -26,6 +26,7 @@ export const HomePagePagination = memo((props: HomePagePaginationProps) => {
         limit={limit}
       />
       <p className='mt-3'>Всего: {count}</p>
+      <p className='mt-1'>Лимит: {limit}</p>
     </footer>
   )
 })

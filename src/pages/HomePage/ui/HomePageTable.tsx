@@ -1,6 +1,8 @@
+import { clsx } from 'clsx'
 import { memo } from 'react'
 import { LinksTable } from '@/entities/Link'
 import { useLinksQuery } from '../api/useLinksQuery'
+import { HomePagePagination } from './HomePagePagination'
 
 interface HomePageTableProps {
   className?: string
@@ -12,7 +14,9 @@ export const HomePageTable = memo((props: HomePageTableProps) => {
 
   if(isLoading) {
     return (
-      <p>loading...</p>
+      <div className='text-center mt-5'>
+        loading...
+      </div>
     )
   }
 
@@ -25,7 +29,12 @@ export const HomePageTable = memo((props: HomePageTableProps) => {
   }
 
   return (
-    <LinksTable className={className} links={data} />
+    <>
+      <main>
+        <LinksTable className={clsx('mt-5', className)} links={data} />
+      </main>
+      <HomePagePagination />
+    </>
   )
 })
 
