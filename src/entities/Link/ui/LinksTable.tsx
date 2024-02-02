@@ -21,9 +21,11 @@ export const LinksTable = memo((props: LinksTableProps) => {
 
   if(!links?.length) {
     return (
-      <h2 className='font-bold text-2xl text-center'>
-        Не найдено
-      </h2>
+      <div className='h-[60vh] flex items-center justify-center'>
+        <h2 className='font-bold text-2xl'>
+          Не найдено
+        </h2>
+      </div>
     )
   }
 

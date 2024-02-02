@@ -3,7 +3,7 @@ import { type FormEvent, memo } from 'react'
 import { getRegisterRoute } from '@/shared/consts'
 import { getMessageError } from '@/shared/lib'
 import { Button, Input, AppLink } from '@/shared/ui'
-import { useLogin } from '../api/useLogin'
+import { useLoginMutation } from '../api/useLoginMutation'
 import { useLoginStore } from '../model/store'
 
 interface LoginFormProps {
@@ -12,15 +12,18 @@ interface LoginFormProps {
 
 export const LoginForm = memo((props: LoginFormProps) => {
   const { className } = props
-  const username = useLoginStore(state => state.username)
-  const password = useLoginStore(state => state.password)
-  const setUsername = useLoginStore(state => state.setUsername)
-  const setPassword = useLoginStore(state => state.setPassword)
-  const { mutate, isLoading, isError, error } = useLogin()
+  const username = useLoginStore.use.username()
+  const password = useLoginStore.use.password()
+  const setUsername = useLoginStore.use.setUsername()
+  const setPassword = useLoginStore.use.setPassword()
+  const { mutate, isLoading, isError, error } = useLoginMutation()
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
-    mutate({ username, password })
+    if(!username && !password) {
+      return
+    }
+    mutate()
   }
 
   return (

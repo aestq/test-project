@@ -18,6 +18,9 @@ export const AddShortLinkForm = memo((props: AddShortLinkFormProps) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
+    if(!link) {
+      return
+    }
     mutate(link, {
       onSuccess: () => {
         setLink('')
