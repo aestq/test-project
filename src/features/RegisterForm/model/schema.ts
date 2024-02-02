@@ -3,5 +3,5 @@ export interface StoreSchema {
   password: string
   setUsername: (value: string) => void
   setPassword: (value: string) => void
-  clearForm: () => void
+  register: () => Promise<void>
 }

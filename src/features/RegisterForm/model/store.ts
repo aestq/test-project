@@ -1,7 +1,9 @@
 import { create } from 'zustand'
+import { $api } from '@/shared/api'
+import { createSelectors } from '@/shared/lib'
 import { type StoreSchema } from './schema'
 
-export const useRegisterStore = create<StoreSchema>((setState) => ({
+const useRegisterStoreBase = create<StoreSchema>((setState, getState) => ({
   username: '',
   password: '',
 
@@ -11,10 +13,17 @@ export const useRegisterStore = create<StoreSchema>((setState) => ({
   setPassword: (value) => {
     setState({ password: value })
   },
-  clearForm: () => {
-    setState({
-      username: '',
-      password: ''
+  register: async () => {
+    const { username, password } = getState()
+
+    const response = await $api.post('/register', undefined, {
+      params: {
+        username,
+        password
+      }
     })
+    return response.data
   }
 }))
+
+export const useRegisterStore = createSelectors(useRegisterStoreBase)

@@ -3,7 +3,7 @@ import { type FormEvent, memo } from 'react'
 import { getLoginRoute } from '@/shared/consts'
 import { getMessageError } from '@/shared/lib'
 import { Button, Input, AppLink, Alert } from '@/shared/ui'
-import { useRegister } from '../api/useRegister'
+import { useRegisterMutation } from '../api/useRegisterMutation'
 import { useRegisterStore } from '../model/store'
 
 interface RegisterFormProps {
@@ -12,15 +12,18 @@ interface RegisterFormProps {
 
 export const RegisterForm = memo((props: RegisterFormProps) => {
   const { className } = props
-  const username = useRegisterStore(state => state.username)
-  const password = useRegisterStore(state => state.password)
-  const setUsername = useRegisterStore(state => state.setUsername)
-  const setPassword = useRegisterStore(state => state.setPassword)
-  const { mutate, isLoading, isError, error, isSuccess } = useRegister()
+  const username = useRegisterStore.use.username()
+  const password = useRegisterStore.use.password()
+  const setUsername = useRegisterStore.use.setUsername()
+  const setPassword = useRegisterStore.use.setPassword()
+  const { mutate, isLoading, isError, error, isSuccess } = useRegisterMutation()
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
-    mutate({ username, password })
+    if(!username || !password) {
+      return
+    }
+    mutate()
   }
 
   return (

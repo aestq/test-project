@@ -20,7 +20,7 @@ export const LoginForm = memo((props: LoginFormProps) => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
-    if(!username && !password) {
+    if(!username || !password) {
       return
     }
     mutate()
