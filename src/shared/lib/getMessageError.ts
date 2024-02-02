@@ -1,10 +1,11 @@
 import { type BaseServerError } from '@/shared/types'
 
-export const getMessageError = (error?: BaseServerError): string => {
-  // TODO: Fix validate error
-  if (Array.isArray(error?.response?.data.detail)) {
-    return 'Произошла ошибка'
+export const getMessageError = (error: BaseServerError) => {
+  const detail = error?.response?.data.detail
+
+  if (Array.isArray(detail)) {
+    return detail[0].loc[1] + ' ' + detail[0].msg
   }
 
-  return error?.response?.data?.detail ?? 'Произошла ошибка'
+  return detail ?? 'Произошла ошибка'
 }

@@ -29,20 +29,23 @@ export const Pagination = memo((props: PaginationProps) => {
 
   return (
     <div className={clsx('flex gap-2', className)}>
-      {new Array(pages).fill(0).map((_, index) => {
-        const currentPage = (offset / limit) + 1
-        const number = index + 1
+      {pages > 1 && (
+        new Array(pages).fill(0).map((_, index) => {
+          const currentPage = (offset / limit) + 1
+          const number = index + 1
+          const isActive = currentPage === number
 
-        return (
-          <Button
-            className={clsx('rounded', { 'bg-stone-700': currentPage === number })}
-            key={`pagination-key-${number}`}
-            onClick={onClick(number)}
-          >
-            {number}
-          </Button>
-        )
-      })}
+          return (
+            <Button
+              className={clsx('rounded', { 'bg-stone-700': isActive })}
+              onClick={onClick(number)}
+              key={`pagination-key-${number}`}
+            >
+              {number}
+            </Button>
+          )
+        })
+      )}
     </div>
   )
 })
