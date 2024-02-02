@@ -3,7 +3,6 @@ import { type ChangeEvent, type InputHTMLAttributes, memo } from 'react'
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   className?: string
-  full?: boolean
   value?: string
   onChange?: (value: string) => void
 }
@@ -11,7 +10,6 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChan
 export const Input = memo((props: InputProps) => {
   const {
     className,
-    full = false,
     value,
     onChange,
     ...otherProps
@@ -25,7 +23,6 @@ export const Input = memo((props: InputProps) => {
     <input
       className={clsx(
         'text-gray-200 bg-neutral-800 px-3.5 py-1.5 rounded-xl focus:outline focus:outline-2 focus:outline-neutral-700',
-        { 'w-full': full },
         className
       )}
       onChange={onChangeHandler}

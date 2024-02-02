@@ -29,6 +29,9 @@
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/keyword-spacing": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
-        "@typescript-eslint/naming-convention": "off"
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/promise-function-async": "off",
+        "@typescript-eslint/no-confusing-void-expression": "off",
+        "@typescript-eslint/no-misused-promises": "off"
     }
 }

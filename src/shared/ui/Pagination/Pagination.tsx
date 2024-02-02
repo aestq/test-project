@@ -19,7 +19,7 @@ export const Pagination = memo((props: PaginationProps) => {
     limit
   } = props
 
-  const pages = Math.round(count / limit)
+  const pages = Math.ceil(count / limit)
 
   const onClick = (number: number) => {
     return () => {
@@ -29,15 +29,20 @@ export const Pagination = memo((props: PaginationProps) => {
 
   return (
     <div className={clsx('flex gap-2', className)}>
-      {new Array(pages).fill(0).map((_, index) => (
-        <Button
-          className={clsx('rounded', { 'bg-stone-700': (offset / limit) + 1 === index + 1 })}
-          key={`pagination-key-${index}`}
-          onClick={onClick(index + 1)}
-        >
-          {index + 1}
-        </Button>
-      ))}
+      {new Array(pages).fill(0).map((_, index) => {
+        const currentPage = (offset / limit) + 1
+        const number = index + 1
+
+        return (
+          <Button
+            className={clsx('rounded', { 'bg-stone-700': currentPage === number })}
+            key={`pagination-key-${number}`}
+            onClick={onClick(number)}
+          >
+            {number}
+          </Button>
+        )
+      })}
     </div>
   )
 })

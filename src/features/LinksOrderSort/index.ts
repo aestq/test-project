@@ -1,2 +1,2 @@
 export { LinksOrderSort } from './ui/LinksOrderSort'
-export { useLinksOrderSortStore } from './model/store'
+export type { SortTarget, SortShort, SortCounter } from './model/types'

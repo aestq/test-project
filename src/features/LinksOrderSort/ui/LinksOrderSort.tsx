@@ -2,40 +2,48 @@ import { clsx } from 'clsx'
 import { memo } from 'react'
 import { Select } from '@/shared/ui'
 import { counterItems, shortItems, targetItems } from '../model/consts'
-import { useLinksOrderSortStore } from '../model/store'
+import { type SortCounter, type SortShort, type SortTarget } from '../model/types'
 
 interface LinksOrderSortProps {
   className?: string
+  target: SortTarget
+  short: SortShort
+  counter: SortCounter
+  onChangeTarget: (value: SortTarget) => void
+  onChangeShort: (value: SortShort) => void
+  onChangeCounter: (value: SortCounter) => void
 }
 
 export const LinksOrderSort = memo((props: LinksOrderSortProps) => {
-  const { className } = props
-  const short = useLinksOrderSortStore(state => state.short)
-  const target = useLinksOrderSortStore(state => state.target)
-  const counter = useLinksOrderSortStore(state => state.counter)
-  const setShort = useLinksOrderSortStore(state => state.setShort)
-  const setTarget = useLinksOrderSortStore(state => state.setTarget)
-  const setCounter = useLinksOrderSortStore(state => state.setCounter)
+  const {
+    className,
+    target,
+    short,
+    counter,
+    onChangeTarget,
+    onChangeCounter,
+    onChangeShort
+  } = props
 
   return (
     <div className={clsx('flex items-center gap-3', className)}>
       <Select
-        label='Short sort'
+        label='Short'
         items={shortItems}
         value={short}
-        onChange={setShort}
+        onChange={onChangeShort}
       />
       <Select
-        label='Target sort'
+        label='Target'
         items={targetItems}
         value={target}
-        onChange={setTarget}
+        onChange={onChangeTarget}
       />
       <Select
-        label='Counter sort'
+        label='Counter'
         items={counterItems}
         value={counter}
-        onChange={setCounter}
+        onChange={onChangeCounter}
       />
     </div>
   )

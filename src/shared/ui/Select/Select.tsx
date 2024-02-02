@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import { type ChangeEvent, memo, type SelectHTMLAttributes } from 'react'
 
 export interface SelectItem<T extends string> {
@@ -28,12 +29,12 @@ function SelectRoot<T extends string> (props: SelectProps<T>) {
   }
 
   return (
-    <label className={className}>
+    <label className={clsx('flex gap-2 items-center', className)}>
       {label && (
-        <p className='mb-1 ml-1.5 block text-sm font-medium'>{label}</p>
+        <p className='mb-1 ml-1.5 block font-medium'>{label}</p>
       )}
       <select
-        className='bg-neutral-800 border-2 border-neutral-700 rounded-lg px-2.5 py-1.5 w-full focus:outline-neutral-700 focus:outline-1'
+        className='bg-neutral-800 border-2 border-neutral-700 rounded-lg px-2 py-1 w-full focus:outline-neutral-700 focus:outline-1'
         onChange={onChangeSelect}
         value={value}
         {...otherProps}

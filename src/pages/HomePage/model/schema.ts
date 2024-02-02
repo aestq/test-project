@@ -1,8 +1,16 @@
+import type { SortTarget, SortShort, SortCounter } from '@/features/LinksOrderSort'
+import { type Link } from '@/entities/Link'
+
 export interface StoreSchema {
+  // pagination
   offset: number
   limit: number
   count: number
 
-  setCount: (count: number) => void
-  setOffset: (offset: number) => void
+  // sort order
+  target: SortTarget
+  short: SortShort
+  counter: SortCounter
+
+  fetchLinks: () => Promise<Link[]>
 }
