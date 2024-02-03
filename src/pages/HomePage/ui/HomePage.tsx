@@ -1,11 +1,11 @@
 import { memo } from 'react'
-import { store } from '@/entities/User'
+import { useUserStore } from '@/entities/User'
 import { Button } from '@/shared/ui'
 import { HomePageFilters } from './HomePageFilters'
 import { HomePageTable } from './HomePageTable'
 
 export const HomePage = memo(() => {
-  const logout = store.use.logout()
+  const logout = useUserStore.use.logout()
 
   return (
     <div className='w-[80%] mx-auto'>

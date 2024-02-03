@@ -26,4 +26,4 @@ const useUserStoreBase = create<StoreSchema>((setState) => ({
   }
 }))
 
-export const store = createSelectors(useUserStoreBase)
+export const useUserStore = createSelectors(useUserStoreBase)

@@ -1,10 +1,10 @@
 import { useMutation } from 'react-query'
-import { type AuthData, store } from '@/entities/User'
+import { type AuthData, useUserStore } from '@/entities/User'
 import { type BaseServerError } from '@/shared/types'
 import { useLoginStore } from '../model/store'
 
 export const useLoginMutation = () => {
-  const setAuthData = store.use.setAuthData()
+  const setAuthData = useUserStore.use.setAuthData()
   const login = useLoginStore.use.login()
   const setPassword = useLoginStore.use.setPassword()
   const setUsername = useLoginStore.use.setUsername()

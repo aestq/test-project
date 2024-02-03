@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { AppRouter } from '@/app/providers/Routing'
-import { store } from '@/entities/User'
+import { useUserStore } from '@/entities/User'
 
 export const App = () => {
-  const initAuthData = store.use.initAuthData()
-  const init = store.use._init()
+  const initAuthData = useUserStore.use.initAuthData()
+  const init = useUserStore.use._init()
 
   useEffect(() => {
     initAuthData()
