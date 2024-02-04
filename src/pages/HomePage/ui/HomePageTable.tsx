@@ -15,7 +15,7 @@ export const HomePageTable = memo((props: HomePageTableProps) => {
 
   if(isLoading) {
     return (
-      <div className='flex justify-center items-center h-[70vh]'>
+      <div className='flex justify-center items-end h-72'>
         <Spinner />
       </div>
     )
