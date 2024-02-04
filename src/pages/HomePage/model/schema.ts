@@ -5,7 +5,7 @@ export interface StoreSchema {
   // pagination
   offset: number
   limit: number
-  count: number
+  countTotal: number
 
   // sort order
   target: SortTarget

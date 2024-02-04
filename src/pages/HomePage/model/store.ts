@@ -14,7 +14,7 @@ const getOrderParams = (...params: string[]) => {
 const useHomePageStoreBase = create<StoreSchema>((setState, getState) => ({
   limit: 7,
   offset: 0,
-  count: 0,
+  countTotal: 0,
   target: '',
   counter: '',
   short: '',
@@ -29,7 +29,7 @@ const useHomePageStoreBase = create<StoreSchema>((setState, getState) => ({
         limit
       }
     })
-    setState({ count: Number(response.headers['x-total-count'] ?? 0) })
+    setState({ countTotal: Number(response.headers['x-total-count'] ?? 0) })
     return response.data
   }
 }))

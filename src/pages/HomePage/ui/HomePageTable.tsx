@@ -1,6 +1,7 @@
 import { clsx } from 'clsx'
 import { memo } from 'react'
 import { LinksTable } from '@/entities/Link'
+import { Spinner } from '@/shared/ui'
 import { useLinksQuery } from '../api/useLinksQuery'
 import { HomePagePagination } from './HomePagePagination'
 
@@ -14,8 +15,8 @@ export const HomePageTable = memo((props: HomePageTableProps) => {
 
   if(isLoading) {
     return (
-      <div className='text-center mt-5'>
-        loading...
+      <div className='flex justify-center items-center h-[70vh]'>
+        <Spinner />
       </div>
     )
   }
