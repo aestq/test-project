@@ -22,7 +22,7 @@ export const HomePagePagination = memo((props: HomePagePaginationProps) => {
       <Pagination
         offset={offset}
         setOffset={setOffset}
-        count={count}
+        countTotal={count}
         limit={limit}
       />
       <p className='mt-3'>Всего: {count}</p>

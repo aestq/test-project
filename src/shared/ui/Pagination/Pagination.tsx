@@ -1,12 +1,14 @@
 import { clsx } from 'clsx'
 import { memo } from 'react'
 import { Button } from '@/shared/ui'
+import { PaginationItem } from './PaginationItem'
+import { usePagination } from './usePagination'
 
 interface PaginationProps {
   className?: string
   offset: number
   setOffset: (offset: number) => void
-  count: number
+  countTotal: number
   limit: number
 }
 
@@ -15,37 +17,38 @@ export const Pagination = memo((props: PaginationProps) => {
     className,
     offset,
     setOffset,
-    count,
+    countTotal,
     limit
   } = props
 
-  const pages = Math.ceil(count / limit)
+  const {
+    paginationList,
+    onChangePage,
+    onPrev,
+    onNext,
+    currentPage
+  } = usePagination({ limit, offset, countTotal, setOffset })
 
-  const onClick = (number: number) => {
-    return () => {
-      setOffset((number - 1) * limit)
-    }
+  if (paginationList.length <= 1) {
+    return null
   }
 
   return (
     <div className={clsx('flex gap-2', className)}>
-      {pages > 1 && (
-        new Array(pages).fill(0).map((_, index) => {
-          const currentPage = (offset / limit) + 1
-          const number = index + 1
-          const isActive = currentPage === number
-
-          return (
-            <Button
-              className={clsx('rounded', { 'bg-stone-700': isActive })}
-              onClick={onClick(number)}
-              key={`pagination-key-${number}`}
-            >
-              {number}
-            </Button>
-          )
-        })
-      )}
+      <Button onClick={onPrev}>
+        {'<'}
+      </Button>
+      {paginationList.map((pageNumber, index) => (
+        <PaginationItem
+          key={`pagination-item-key-${index}`}
+          pageNumber={pageNumber}
+          currentPage={currentPage}
+          onChange={onChangePage(pageNumber)}
+        />
+      ))}
+      <Button onClick={onNext}>
+        {'>'}
+      </Button>
     </div>
   )
 })
